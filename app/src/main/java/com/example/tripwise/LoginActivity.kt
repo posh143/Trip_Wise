@@ -45,7 +45,7 @@ class LoginActivity : ComponentActivity() {
             TripWiseTheme {
                 var gdprAccepted by remember { mutableStateOf(false) }
 
-                // ✅ GDPR POPUP FIRST
+                //  GDPR POPUP FIRST
                 if (!gdprAccepted) {
                     GDPRDialog(
                         onAccept = { gdprAccepted = true },
