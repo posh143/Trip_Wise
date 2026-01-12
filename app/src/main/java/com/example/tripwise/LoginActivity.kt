@@ -43,19 +43,65 @@ class LoginActivity : ComponentActivity() {
 
         setContent {
             TripWiseTheme {
-                LoginScreen(
-                    onLoginSuccess = {
-                        startActivity(Intent(this, HomeActivity::class.java))
-                        finish()
-                    },
-                    onGoToSignup = {
-                        startActivity(Intent(this, SignUpActivity::class.java))
-                    }
-                )
+                var gdprAccepted by remember { mutableStateOf(false) }
+
+                // ✅ GDPR POPUP FIRST
+                if (!gdprAccepted) {
+                    GDPRDialog(
+                        onAccept = { gdprAccepted = true },
+                        onDecline = { finish() }
+                    )
+                } else {
+                    LoginScreen(
+                        onLoginSuccess = {
+                            startActivity(Intent(this, HomeActivity::class.java))
+                            finish()
+                        },
+                        onGoToSignup = {
+                            startActivity(Intent(this, SignUpActivity::class.java))
+                        }
+                    )
+                }
             }
         }
     }
 }
+
+/* ---------- GDPR DIALOG ---------- */
+
+@Composable
+fun GDPRDialog(
+    onAccept: () -> Unit,
+    onDecline: () -> Unit
+) {
+    AlertDialog(
+        onDismissRequest = {}, // block dismiss
+        title = {
+            Text(
+                text = "GDPR Consent",
+                fontWeight = FontWeight.Bold
+            )
+        },
+        text = {
+            Text(
+                text = "TripWise collects basic user data such as email and location to provide travel recommendations and map features.\n\nBy continuing, you agree to our use of data in accordance with GDPR regulations.",
+                style = MaterialTheme.typography.bodyMedium
+            )
+        },
+        confirmButton = {
+            Button(onClick = onAccept) {
+                Text("Accept")
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDecline) {
+                Text("Decline")
+            }
+        }
+    )
+}
+
+/* ---------- LOGIN SCREEN ---------- */
 
 @Composable
 fun LoginScreen(
