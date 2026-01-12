@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "552686327766",
+    "project_id": "tripwise-c0083",
+    "storage_bucket": "tripwise-c0083.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:552686327766:android:383d1803f000c401be7677",
+        "android_client_info": {
+          "package_name": "com.example.tripwise"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAi4RgZc6_aQiAbbv6iOFBQDjxIaytSDI8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
